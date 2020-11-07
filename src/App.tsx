@@ -1,24 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import Gallery from "./components/Gallery";
+import OpeningHours from "./components/OpeningHours";
+import Highlight from "./components/Highlight";
+import SocialLinks from "./components/SocialLinks";
+
+// @ts-ignore
+const webTexts = window._WEB_TEXTS;
+
 function App() {
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {webTexts.highLight !== "" ? <Highlight text={webTexts.highLight} /> : null}
+      <OpeningHours hours={webTexts.aukiOlo} />
+      <Gallery />
+      <SocialLinks links={webTexts.linkit} />
     </div>
   );
 }

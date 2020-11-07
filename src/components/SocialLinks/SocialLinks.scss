@@ -1,0 +1,15 @@
+.SocialLinks{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    i{
+        color: #000;
+        font-size: 40px;
+        transition: filter 0.2s;
+        margin: 10px;
+
+        &:hover{
+            filter: invert(0.3);
+        }
+    }
+}

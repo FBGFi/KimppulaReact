@@ -1,0 +1,21 @@
+.SocialLinks {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.SocialLinks i {
+  color: #000;
+  font-size: 40px;
+  -webkit-transition: -webkit-filter 0.2s;
+  transition: -webkit-filter 0.2s;
+  transition: filter 0.2s;
+  transition: filter 0.2s, -webkit-filter 0.2s;
+  margin: 10px;
+}
+
+.SocialLinks i:hover {
+  -webkit-filter: invert(0.3);
+          filter: invert(0.3);
+}
+/*# sourceMappingURL=SocialLinks.css.map */
