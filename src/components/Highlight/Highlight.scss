@@ -1,3 +1,16 @@
+@import '../../constants/colors.scss';
+
 .Highlight{
-    
+    padding: 5px;
+    background: $linearGray;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2 !important;
+
+    p{
+        margin: 0;
+        text-align: center;
+    }
 }

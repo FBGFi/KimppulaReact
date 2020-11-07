@@ -1,3 +1,7 @@
+.Gallery {
+  position: relative;
+}
+
 .Gallery img {
   max-width: 300px;
 }

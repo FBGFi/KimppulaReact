@@ -8,7 +8,7 @@ interface HighlightProps{
 const Highlight = (props: HighlightProps) => {
     return(
         <div className="Highlight">
-            {props.text}
+            <p className="body-text">{props.text}</p>
         </div>
     );
 }
