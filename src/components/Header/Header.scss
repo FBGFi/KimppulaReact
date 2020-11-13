@@ -1,3 +1,41 @@
 .Header{
-    
+    padding: 15px 5px;
+
+    #primary-menu{
+        display: flex;
+        align-content: center;
+
+        button{
+            cursor: pointer;
+            background: none;
+            border: 0;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+
+            &:focus{
+                outline: none;
+            }
+        }
+    }   
+}
+
+@media(max-width:550px){
+    .Header{
+        #primary-menu{
+            button{
+            }
+        }
+    }
+}
+@media(max-width:850px){
+    .Header{
+        #primary-menu{
+            justify-content: flex-end;
+            button{
+                font-size: 1.0rem;
+                margin: 0 5px;
+            }
+        }
+    }
 }

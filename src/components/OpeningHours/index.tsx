@@ -1,9 +1,8 @@
 import React from 'react';
 import './OpeningHours.css';
 
-interface Hours {
-    [key: string]: string;
-}
+import Hours from "../../constants/interfaces/Hours";
+
 interface OpeningHoursProps {
     hours: Hours;
 }
@@ -30,7 +29,10 @@ const OpeningHours = (props: OpeningHoursProps) => {
 
     return (
         <div className="OpeningHours">
-            {Object.keys(hours).map(key => <p key={key} className="body-text">{key}: {hours[key]}</p>)}
+            <ul className="body-text">
+            <li>Aukioloajat:</li>
+            {Object.keys(hours).map(key => <li key={key} className="body-text">{key} <b>{hours[key]}</b></li>)}
+            </ul>
         </div>
     )
 }

@@ -1,0 +1,61 @@
+.LandingPage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.LandingPage .description-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.LandingPage .description-container p {
+  width: 90%;
+  margin-top: 0;
+}
+
+.LandingPage .description-container .left {
+  text-align: left;
+  margin-right: auto;
+}
+
+.LandingPage .description-container .right {
+  text-align: right;
+  margin-left: auto;
+}
+
+.LandingPage .shop-container {
+  margin-top: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.LandingPage .shop-container a:first-child {
+  margin: auto 20px auto auto;
+}
+
+.LandingPage .shop-container .interflora {
+  width: 100%;
+}
+
+.LandingPage .shop-container .ekukka {
+  width: 100%;
+}
+/*# sourceMappingURL=LandingPage.css.map */

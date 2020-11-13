@@ -2,12 +2,15 @@
 
 .Highlight{
     padding: 5px;
-    background: $linearGray;
+    background: #fff;
+    color: #000;
+    // border-bottom: #000 solid 1px;
+    box-shadow: 0 1px 2px #000;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 2 !important;
+    z-index: 3 !important;
 
     p{
         margin: 0;

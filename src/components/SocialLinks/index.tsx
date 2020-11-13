@@ -1,16 +1,23 @@
-import React from 'react';
+import React, {useRef,useEffect} from 'react';
 import './SocialLinks.css';
 
-interface Links{
-    [key:string]: string;
-}
+import Links from '../../constants/interfaces/Links';
+
 interface SocialLinksProps{
-    links: Links
+    links: Links,
+    setPadding: Function
 }
 
-const SocialLinks = (props: SocialLinksProps) => {
+const SocialLinks = (props: SocialLinksProps) => {   
+    const socialLinksRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if(socialLinksRef.current){
+            props.setPadding(window.innerHeight - socialLinksRef.current.getBoundingClientRect().top); 
+        }      
+    });
     return(
-        <div className="SocialLinks">
+        <div ref={socialLinksRef} className="SocialLinks">
             <a href={props.links.facebook} target="_blank" rel="noreferrer">
                 <i className="fab fa-facebook-square"></i>
             </a>

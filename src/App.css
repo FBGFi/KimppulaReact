@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel&family=Lato&family=Tangerine:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Lato&family=Tangerine:wght@700&display=swap");
 @import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
 .title-text {
   font-family: 'Cinzel', serif;
@@ -15,9 +15,30 @@
   font-size: 2.5rem;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 * {
@@ -28,22 +49,57 @@ body {
 .App {
   min-height: 100vh;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
 }
 
 .App > *:not(.background-logo) {
-  z-index: 1;
+  z-index: 2;
 }
 
 .App .background-logo {
-  z-index: 0;
+  z-index: 1;
   position: fixed;
   bottom: 0;
   left: 0;
   height: auto;
-  width: 100%;
-  max-width: 1200px;
+  width: 60%;
+  max-width: 600px;
   -webkit-transform: translate(-20%, 36%);
           transform: translate(-20%, 36%);
-  opacity: 0.2;
+  -webkit-filter: invert(0.9);
+          filter: invert(0.9);
+}
+
+.App .background-image-container {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  z-index: 0;
+  background-size: cover;
+  position: relative;
+}
+
+.App .background-image-container .shader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 850px) {
+  .App {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .App .background-logo {
+    bottom: 60%;
+  }
 }
 /*# sourceMappingURL=App.css.map */

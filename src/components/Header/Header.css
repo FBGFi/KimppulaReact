@@ -1,1 +1,40 @@
-/* No CSS *//*# sourceMappingURL=Header.css.map */
+.Header {
+  padding: 15px 5px;
+}
+
+.Header #primary-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.Header #primary-menu button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.Header #primary-menu button:focus {
+  outline: none;
+}
+
+@media (max-width: 850px) {
+  .Header #primary-menu {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+  .Header #primary-menu button {
+    font-size: 1.0rem;
+    margin: 0 5px;
+  }
+}
+/*# sourceMappingURL=Header.css.map */

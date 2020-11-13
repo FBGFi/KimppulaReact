@@ -1,0 +1,33 @@
+.Content{
+    margin-left: auto;
+    width: clamp(320px, 40%, 500px);
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+
+    .content-container{
+        cursor: grab;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        padding-top: clamp(15px,10%,30px);
+        padding-left: clamp(15px,10%,30px);
+        padding-right: clamp(15px,10%,30px);
+    }
+}
+
+@media(max-width:850px){
+    .Content{
+        width: 100% !important;
+        height: 60vh;
+        margin-top: auto;
+    }
+}
+
+@media(max-width: 1180px){
+    .Content{
+        width: clamp(320px, 50%, 500px);;
+    }
+}

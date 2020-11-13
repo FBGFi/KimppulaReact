@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,aAAa,CAAA;EACT,QAAQ,EAAE,QAAQ;CACrB",
+    "mappings": "AAAA,AAAA,aAAa,CAAA;EACT,QAAQ,EAAE,QAAQ;CAKrB;;AAND,AAEI,aAFS,CAET,EAAE,CAAA;EACE,UAAU,EAAE,IAAI;EAChB,OAAO,EAAE,CAAC;CACb",
     "sources": [
         "OpeningHours.scss"
     ],
