@@ -16,6 +16,15 @@
     font-size: 2.5rem;
 }
 
+.left{
+  text-align: left;
+  margin-right: auto;
+}
+.right{
+  text-align: right;
+  margin-left: auto;
+}
+
 // fontawesome
 @import url('https://use.fontawesome.com/releases/v5.8.1/css/all.css');
 
@@ -49,48 +58,67 @@ body{
 *{
   box-sizing: border-box;
 }
+button{
+  cursor: pointer;
+
+  &:focus{
+      outline: none;
+  }
+}
 .App{    
   min-height: 100vh;
   position: relative;
   display: flex;
+  flex-direction: column;
   overflow: hidden;
-
-  &>*:not(.background-logo){
-      z-index: 2;
-  }
-
-  .background-logo{
-      z-index: 1;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      height: auto;
-      width: 60%;
-      max-width: 600px;
-      transform: translate(-20%, 36%);
-      filter:invert(0.9);
-  }
-  .background-image-container{
+  #site{
     flex: 1;
-    z-index: 0;
-    background-size: cover;
+    display: flex;
     position: relative;
-    .shader{
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0,0,0,0.5);
+    &>*:not(.background-logo){
+        z-index: 2;
+    }
+
+    .background-logo{
+        z-index: 1;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: auto;
+        width: 60%;
+        max-width: 600px;
+        transform: translate(-20%, 36%);
+        filter:invert(0.9);
+    }
+    .background-image-container{
+      flex: 1;
+      z-index: 0;
+      background-size: cover;
+      background-position: 25%;
+      position: relative;
+
+      .shader{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.5);
+      }
     }
   }
 }
 
 @media(max-width:850px){
   .App{
-    flex-direction: column;
-    .background-logo{
-      bottom: 60%;
+    #site{     
+      flex-direction: column;
+      .background-logo{
+        bottom: 60%;
+      }
+      .background-image-container{
+        background-position-x: 20%;
+      }
     }
   }
 }

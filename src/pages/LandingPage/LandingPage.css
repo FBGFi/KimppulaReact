@@ -26,16 +26,6 @@
   margin-top: 0;
 }
 
-.LandingPage .description-container .left {
-  text-align: left;
-  margin-right: auto;
-}
-
-.LandingPage .description-container .right {
-  text-align: right;
-  margin-left: auto;
-}
-
 .LandingPage .shop-container {
   margin-top: auto;
   display: -webkit-box;

@@ -1,9 +1,11 @@
 window._IMAGES = {
     gallery: [
-        "eKukka.png",
-        "julkisivu.jpg"
+        "1.jpg",
+        "2.jpg",
+        "3.jpg",
+        "julkisivu.jpg",
+        "ruusuja.jpg"
     ],
     julkiSivu: "julkisivu.jpg",
-    eKukka: "eKukka.png",
-    interflora: "interflora.png"
+    ajanKohtaista: "1.jpg"
 };

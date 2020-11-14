@@ -1,15 +1,60 @@
 .Header{
     padding: 15px 5px;
+    display: flex;
+    position: relative;
+    z-index: 2;
+
+    #content-minimize{
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s;
+        pointer-events: none;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: 0; 
+        &:hover{
+            filter: invert(0.1);
+        }
+        i{
+            font-size: 40px;
+        }
+    }
+
+    #mobile-menu{
+        width: 40px;
+        height: 40px;
+        color: #FFF;
+        background-color: #000;
+        border: 0;
+        border-radius: 3px;
+        font-size: 20px;
+        margin-left: auto;
+        margin-right: 10px;
+        display: none;
+
+        &:hover{
+            filter: invert(0.1);
+        }
+        &.clicked{
+            animation: mobile_menu_clicked 0.2s;
+        }
+        i{
+            pointer-events: none;
+        }
+    }
 
     #primary-menu{
         display: flex;
         align-content: center;
+        justify-content: flex-end;
+        flex: 1;
 
         button{
             cursor: pointer;
             background: none;
             border: 0;
-            margin: 0 auto;
+            margin: 0 5px;
             font-size: 1.1rem;
             transition: transform 0.3s;
 
@@ -20,16 +65,51 @@
     }   
 }
 
+@keyframes mobile_menu_clicked{
+    0%{
+        filter: invert(0);
+    }
+    25%{
+        filter:invert(0.8);
+    }
+    100%{
+        filter: invert(0);
+    }
+}
+
 @media(max-width:550px){
     .Header{
+        #mobile-menu{
+            display: inline-block;
+        }
         #primary-menu{
+            position: absolute;
+            flex-direction: column;
+            top: 0;
+            right: -100%;
+            background-color: #FFF;
+            transition: right 1s;
+            padding: 5px 12px;
+            border-left: 1px solid #000;
+            border-bottom: 1px solid #000;
+            &.show{
+                right: 0;
+            }
             button{
+                padding: 5px 0 !important;
             }
         }
     }
 }
 @media(max-width:850px){
     .Header{
+        #content-minimize{
+            display: inline-block;
+            &.show{
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
         #primary-menu{
             justify-content: flex-end;
             button{

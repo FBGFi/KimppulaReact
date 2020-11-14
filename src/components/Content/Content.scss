@@ -1,10 +1,31 @@
+$contentWidth: clamp(500px, 40%, 800px);
+
 .Content{
     margin-left: auto;
-    width: clamp(320px, 40%, 500px);
+    width: $contentWidth;
     height: 100vh;
     background-color: #fff;
     display: flex;
     flex-direction: column;
+    position: relative;
+
+    div[class^="fade-"]{       
+        height: 20px;
+        right: 4px;
+        z-index: 1;
+        width: $contentWidth;
+        clip-path: polygon(8px 0, 100% 0, 100% 100%, 8px 100%);
+    }
+    .fade-out{
+        position: absolute;
+        background: linear-gradient(#FFF, transparent);
+        top: 0;
+    }
+    .fade-in{
+        position: fixed;
+        background: linear-gradient(transparent,#FFF);
+        bottom: 0;
+    }
 
     .content-container{
         cursor: grab;
@@ -15,6 +36,11 @@
         padding-top: clamp(15px,10%,30px);
         padding-left: clamp(15px,10%,30px);
         padding-right: clamp(15px,10%,30px);
+        transition: opacity 0.5s;
+
+        &.fade{
+            opacity: 0;
+        }
     }
 }
 
@@ -22,12 +48,25 @@
     .Content{
         width: 100% !important;
         height: 60vh;
-        margin-top: auto;
+        position: absolute;
+        bottom: 0;
+        transition: height 1s;
+
+        &.align-top{
+            height: 100%;
+        }
+
+        div[class^="fade-"]{
+            width: 100% !important;
+        }
     }
 }
 
 @media(max-width: 1180px){
     .Content{
-        width: clamp(320px, 50%, 500px);;
+        width: $contentWidth;
+        div[class^="fade-"]{       
+            width: $contentWidth;
+        }
     }
 }

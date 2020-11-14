@@ -15,6 +15,16 @@
   font-size: 2.5rem;
 }
 
+.left {
+  text-align: left;
+  margin-right: auto;
+}
+
+.right {
+  text-align: right;
+  margin-left: auto;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 4px;
@@ -46,20 +56,42 @@ body {
           box-sizing: border-box;
 }
 
+button {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
 .App {
   min-height: 100vh;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   overflow: hidden;
 }
 
-.App > *:not(.background-logo) {
+.App #site {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.App #site > *:not(.background-logo) {
   z-index: 2;
 }
 
-.App .background-logo {
+.App #site .background-logo {
   z-index: 1;
   position: fixed;
   bottom: 0;
@@ -73,16 +105,17 @@ body {
           filter: invert(0.9);
 }
 
-.App .background-image-container {
+.App #site .background-image-container {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   z-index: 0;
   background-size: cover;
+  background-position: 25%;
   position: relative;
 }
 
-.App .background-image-container .shader {
+.App #site .background-image-container .shader {
   position: absolute;
   top: 0;
   left: 0;
@@ -92,14 +125,17 @@ body {
 }
 
 @media (max-width: 850px) {
-  .App {
+  .App #site {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .App .background-logo {
+  .App #site .background-logo {
     bottom: 60%;
+  }
+  .App #site .background-image-container {
+    background-position-x: 20%;
   }
 }
 /*# sourceMappingURL=App.css.map */

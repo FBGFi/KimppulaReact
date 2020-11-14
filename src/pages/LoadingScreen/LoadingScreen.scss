@@ -1,0 +1,24 @@
+.LoadingScreen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: #000;
+    z-index: 5 !important;
+    transition: opacity 1s;
+    display: flex;
+
+    &.fading{
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .loading-bar{
+        height: 3px;
+        background-color: white;
+        width: 0;
+        margin: auto;
+        transition: width 0.8s;
+    }
+}
