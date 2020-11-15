@@ -34,9 +34,9 @@ function App() {
   return (
     <div ref={appRef} className="App">
       {loadingScreen}
-      {webTexts.highLight !== "" ? <Highlight text={webTexts.highLight} /> : null}
       <div id="site">
-        <div className="background-image-container" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/gallery/${images.julkiSivu})`}}>
+        <div className="background-image-container" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/images/gallery/${images.julkiSivu})`}}>         
+          {webTexts.highLight !== "" ? <Highlight text={webTexts.highLight} /> : null}
           <div className="shader"></div>
         </div>
         <Content images={images} paddingBottom={socialLinksPadding} />

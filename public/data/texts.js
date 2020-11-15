@@ -1,7 +1,7 @@
 window._WEB_TEXTS = {
     // tähän teksti joka näkyy sivun ylälaidassa,
     // laita tyhjäksi ("") jos ei ole ilmoitettavaa
-    highLight: "Isänpäivänä 25.6. olemme avoinna klo 14-16",
+    highLight: "Isänpäivänä 25.6. olemme avoinna klo 14-16Isänpäivänä 25.6. olemme avoinna klo 14-16Isänpäivänä 25.6. olemme avoinna klo 14-16Isänpäivänä 25.6. olemme avoinna klo 14-16",
     // tähän aukioloajat kellonaikoina
     aukiOlo: {
         ma: "9-17",

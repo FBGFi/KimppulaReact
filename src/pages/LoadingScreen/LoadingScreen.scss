@@ -8,17 +8,26 @@
     z-index: 5 !important;
     transition: opacity 1s;
     display: flex;
+    flex-direction: column;
 
     &.fading{
         opacity: 0;
         pointer-events: none;
     }
 
+    .logo{
+        margin: auto auto 50px auto;
+        filter: invert(1) blur(10px);
+        width: 50%;
+        max-width: 400px;
+        transition: filter 1s;
+    }
+
     .loading-bar{
         height: 3px;
         background-color: white;
         width: 0;
-        margin: auto;
+        margin: 0 auto auto auto;
         transition: width 0.8s;
     }
 }

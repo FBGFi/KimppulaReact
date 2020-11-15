@@ -9,22 +9,15 @@ $contentWidth: clamp(500px, 40%, 800px);
     flex-direction: column;
     position: relative;
 
-    div[class^="fade-"]{       
-        height: 20px;
-        right: 4px;
-        z-index: 1;
-        width: $contentWidth;
-        clip-path: polygon(8px 0, 100% 0, 100% 100%, 8px 100%);
-    }
     .fade-out{
         position: absolute;
         background: linear-gradient(#FFF, transparent);
+        width: 100%;
         top: 0;
-    }
-    .fade-in{
-        position: fixed;
-        background: linear-gradient(transparent,#FFF);
-        bottom: 0;
+        height: 20px;
+        right: 4px;
+        z-index: 1;
+        clip-path: polygon(8px 0, 100% 0, 100% 100%, 8px 100%);
     }
 
     .content-container{
@@ -33,9 +26,9 @@ $contentWidth: clamp(500px, 40%, 800px);
         display: flex;
         flex-direction: column;
         overflow: auto;
-        padding-top: clamp(15px,10%,30px);
-        padding-left: clamp(15px,10%,30px);
-        padding-right: clamp(15px,10%,30px);
+        padding-top: clamp(40px,10%,60px);
+        padding-left: clamp(40px,10%,60px);
+        padding-right: clamp(40px,10%,60px);
         transition: opacity 0.5s;
 
         &.fade{
@@ -55,18 +48,11 @@ $contentWidth: clamp(500px, 40%, 800px);
         &.align-top{
             height: 100%;
         }
-
-        div[class^="fade-"]{
-            width: 100% !important;
-        }
     }
 }
 
 @media(max-width: 1180px){
     .Content{
         width: $contentWidth;
-        div[class^="fade-"]{       
-            width: $contentWidth;
-        }
     }
 }

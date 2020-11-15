@@ -105,7 +105,8 @@ const Content = (props: ContentProps) => {
 
         containerRef.current?.addEventListener('scroll', (e) => {
             if(!containerRef.current || !contentRef.current) return;
-            if(containerRef.current.scrollTop > lastScroll+5 && window.innerWidth <= 850 && contentMaxed){
+            
+            if(containerRef.current.scrollTop > lastScroll+5 && window.innerWidth <= 850 && !contentMaxed){
                 contentRef.current.className = "Content align-top";  
                 setContentMaxed(true);
             } 

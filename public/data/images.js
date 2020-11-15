@@ -1,10 +1,30 @@
 window._IMAGES = {
     gallery: [
-        "1.jpg",
-        "2.jpg",
-        "3.jpg",
-        "julkisivu.jpg",
-        "ruusuja.jpg"
+        {
+            file: "1.jpg",
+            alt: "Kesäkukkajuliste",
+            text: "Joku ilmotus jossain"
+        },
+        {
+            file: "2.jpg",
+            alt: "Kesäkukkajuliste",
+            text: "Joku ilmotus jossain toisaalla"
+        },
+        {
+            file: "3.jpg",
+            alt: "Kesäkukkajuliste",
+            text: "Joku ilmotus jossain taas"
+        },
+        {
+            file: "julkisivu.jpg",
+            alt: "Kesäkukkajuliste",
+            text: "Joku ilmotus jossain"
+        },
+        {
+            file: "ruusuja.jpg",
+            alt: "Kesäkukkajuliste",
+            text: "Joku ilmotus jossain"
+        }
     ],
     julkiSivu: "julkisivu.jpg",
     ajanKohtaista: "1.jpg"

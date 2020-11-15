@@ -50,16 +50,24 @@
         justify-content: flex-end;
         flex: 1;
 
-        button{
-            cursor: pointer;
-            background: none;
-            border: 0;
-            margin: 0 5px;
-            font-size: 1.1rem;
-            transition: transform 0.3s;
+        .button-container{
+            display:flex;
+            flex-direction: column;
 
-            &:focus{
-                outline: none;
+            button{
+                background: none;
+                border: 0;
+                margin: 0 10px;
+                font-size: 1.3rem;
+                transition: transform 0.3s;
+            }
+
+            .slider{
+                width:0;
+                height: 2px;
+                margin: 3px auto;
+                background-color: #000;
+                transition: width 0.5s;
             }
         }
     }   
@@ -113,7 +121,6 @@
         #primary-menu{
             justify-content: flex-end;
             button{
-                font-size: 1.0rem;
                 margin: 0 5px;
             }
         }

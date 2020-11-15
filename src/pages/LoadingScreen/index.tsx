@@ -2,6 +2,8 @@ import { render } from '@testing-library/react';
 import React, { Component, createRef, RefObject } from 'react';
 import './LoadingScreen.css';
 
+import logo from '../../assets/images/logo.svg';
+
 // @ts-ignore
 const preloadjs = window.createjs;
 
@@ -21,6 +23,7 @@ class LoadingScreen extends Component<LoadingScreenProps> implements ILoadingScr
     queue;
     loadBarRef = createRef<HTMLDivElement>();
     loadingScreenRef = createRef<HTMLDivElement>();
+    logoRef = createRef<HTMLImageElement>();
 
     state = {
         loadState: 0
@@ -32,8 +35,9 @@ class LoadingScreen extends Component<LoadingScreenProps> implements ILoadingScr
     }
 
     handleLoadProgress() {
-        if (this.loadBarRef.current) {
+        if (this.loadBarRef.current && this.logoRef.current) {
             this.loadBarRef.current.style.width = this.queue.progress * 100 + '%';
+            this.logoRef.current.style.filter = `invert(1) blur(${10 - this.queue.progress*10}px)`;           
         }
     }
 
@@ -55,6 +59,7 @@ class LoadingScreen extends Component<LoadingScreenProps> implements ILoadingScr
     render() {
         return (
             <div ref={this.loadingScreenRef} className="LoadingScreen">
+                <img ref={this.logoRef} className="logo" src={logo} alt="logo" />
                 <div ref={this.loadBarRef} className="loading-bar"></div>
             </div>
         );
