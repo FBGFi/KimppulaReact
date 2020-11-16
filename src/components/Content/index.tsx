@@ -68,7 +68,9 @@ const Content = (props: ContentProps) => {
         await new Promise(res => setTimeout(() => res(),500));
         switch (destination) {
             case 'etusivu':
-                setCurrentPage(<HomePage />);
+                if(contentRef.current){                   
+                    setCurrentPage(<HomePage contentDiv={contentRef.current} />);
+                }
                 break;
             case 'tuotteet':
                 setCurrentPage(<ProductsPage banner={props.images.ajanKohtaista} webTexts={webTexts} />);

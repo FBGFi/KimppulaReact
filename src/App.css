@@ -60,6 +60,10 @@ button {
   cursor: pointer;
 }
 
+button > * {
+  pointer-events: none;
+}
+
 button:focus {
   outline: none;
 }

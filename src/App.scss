@@ -60,7 +60,10 @@ body{
 }
 button{
   cursor: pointer;
-
+  
+  &>*{
+      pointer-events: none;
+  }
   &:focus{
       outline: none;
   }

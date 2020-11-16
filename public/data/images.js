@@ -1,4 +1,5 @@
 window._IMAGES = {
+    // tekstin maksimimerkkimäärä olisi hyvä pitää n.80-100 paikkeilla
     gallery: [
         {
             file: "1.jpg",
@@ -8,7 +9,7 @@ window._IMAGES = {
         {
             file: "2.jpg",
             alt: "Kesäkukkajuliste",
-            text: "Joku ilmotus jossain toisaalla"
+            text: "Joku ilmotus jossain toisaalla Joku ilmotus jossain toisaalla Joku ilmotus jossain toisaalla"
         },
         {
             file: "3.jpg",

@@ -32,17 +32,26 @@ const Header = (props: HeaderProps) => {
         props.minimizeContent();
     }
 
+    const setHeaderHeight = () => props.setHeaderHeight(headerRef.current?.offsetHeight);
+
+    const hideMobileMenu = async (e: any) => {
+        if (window.innerWidth >= 550) return;
+        if (primaryMenuRef.current && mobileMenuRef.current && e.target?.id !== mobileMenuRef.current.id) {
+            mobileMenuRef.current.className = "";
+            await new Promise(res => setTimeout(() => res(), 400));
+            primaryMenuRef.current.className = "";
+        }
+    }
+
     useEffect(() => {
-        document.body.addEventListener('click', async (e: any) => {
-            if (window.innerWidth >= 550) return;
-            if (primaryMenuRef.current && mobileMenuRef.current && e.target?.id !== mobileMenuRef.current.id) {
-                mobileMenuRef.current.className = "";
-                await new Promise(res => setTimeout(() => res(), 400));
-                primaryMenuRef.current.className = "";
-            }
-        });
+        document.body.addEventListener('click', hideMobileMenu);
         props.setHeaderHeight(headerRef.current?.offsetHeight);
-        window.addEventListener('resize', () => props.setHeaderHeight(headerRef.current?.offsetHeight));
+        window.addEventListener('resize', setHeaderHeight);
+
+        return () => {
+            window.removeEventListener('resize', setHeaderHeight);
+            document.body.removeEventListener('click', hideMobileMenu);
+        }
     }, []);
 
     return (

@@ -5,9 +5,11 @@ import GalleryImageObject from "../../constants/interfaces/GalleryImageObject";
 
 // @ts-ignore
 const galleryImages = window._IMAGES.gallery;
+let currentImageIndex = 0;
+let currentImageWidth = 0;
+let currentImageHeight = 0;
 
 interface GalleryModalProps {
-    imageInfo: GalleryImageObject,
     closeGallery: Function,
     setImageToView: Function,
     currentIndex: number
@@ -18,70 +20,7 @@ interface GalleryImageProps {
     index: number
 }
 interface GalleryProps {
-}
-
-const GalleryModal = (props: GalleryModalProps) => {
-    const imageRef = useRef<HTMLDivElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
-
-    const dimensions = (): { width: string, height: string } => {
-        let width = window.innerWidth * 0.9;
-        let height = width * 9 / 16;
-        return { width: width + 'px', height: height + 'px' };
-    }
-
-    const next = () => {
-        let index = props.currentIndex + 1;
-        if (index >= galleryImages.length) {
-            index = 0;
-        }
-        props.setImageToView(galleryImages[index], index);
-    }
-
-    const previous = () => {
-        let index = props.currentIndex - 1;
-        if (index < 0) {
-            index = galleryImages.length - 1;
-        }
-        props.setImageToView(galleryImages[index], index);
-    }
-
-    useEffect(() => {
-        if (imageRef.current) {
-            let maxHeight = window.innerHeight * 0.8;
-            imageRef.current.style.maxHeight = maxHeight + 'px';
-            imageRef.current.style.maxWidth = maxHeight * 16 / 9 + 'px';
-        }
-
-        window.addEventListener('resize', () => {
-            if (imageRef.current) {
-                imageRef.current.style.width = dimensions().width;
-                imageRef.current.style.height = dimensions().height;
-            }
-        });
-    }, []);
-
-    return (
-        <div className="gallery-modal-container">
-            <div ref={containerRef} className="zoomed-image">
-                <div
-                    className="image-container"
-                    ref={imageRef}
-                    style={{
-                        backgroundImage: `url(${process.env.PUBLIC_URL}/images/gallery/${props.imageInfo.file})`,
-                        width: dimensions().width,
-                        height: dimensions().height
-                    }}
-                />
-                <div className="description">{props.imageInfo.text}</div>
-                <button className="close-gallery" onClick={(e) => props.closeGallery(e)}>
-                    <i className="fas fa-window-close"></i>
-                </button>
-                <button className="previous" onClick={previous}><i className="fas fa-arrow-alt-circle-left"></i></button>
-                <button className="next" onClick={next}><i className="fas fa-arrow-alt-circle-right"></i></button>
-            </div>
-        </div>
-    );
+    contentDiv: HTMLDivElement
 }
 
 const GalleryImage = (props: GalleryImageProps) => {
@@ -103,12 +42,17 @@ const GalleryImage = (props: GalleryImageProps) => {
 
     image.src = src;
 
+    const setToSquare = () => {
+        if (containerRef.current) {
+            containerRef.current.style.height = containerRef.current.offsetWidth + 'px';
+        }
+    }
+
     useEffect(() => {
-        window.addEventListener('resize', () => {
-            if (containerRef.current) {
-                containerRef.current.style.height = containerRef.current.offsetWidth + 'px';
-            }
-        })
+        window.addEventListener('resize', setToSquare)
+        return () => {
+            window.removeEventListener('resize', setToSquare)
+        }
     }, [])
 
     return (
@@ -116,7 +60,7 @@ const GalleryImage = (props: GalleryImageProps) => {
             <img
                 draggable={false}
                 ref={imageRef}
-                onClick={() => props.onImageClick(props.imageInfo, props.index)}
+                onClick={() => props.onImageClick(props.index)}
                 className="gallery-image"
                 src={src}
                 alt={props.imageInfo.alt} />
@@ -124,17 +68,118 @@ const GalleryImage = (props: GalleryImageProps) => {
     );
 }
 
+const GalleryModal = (props: GalleryModalProps) => {
+    const imageRef = useRef<HTMLImageElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const descriptionRef = useRef<HTMLDivElement>(null);
+    currentImageIndex = props.currentIndex;
+
+    let image = new Image();
+    let src = `${process.env.PUBLIC_URL}/images/gallery/${galleryImages[currentImageIndex].file}`;
+
+    image.onload = () => {
+        currentImageWidth = image.width;
+        currentImageHeight = image.height;
+        if (containerRef.current && imageRef.current) {
+            setDimensions();
+        }
+    }
+
+    image.src = src;
+
+    const dimensions = (): { width: string, height: string } => {
+        let width: number = window.innerWidth * 0.9;
+        let height: number = currentImageHeight * (width / currentImageWidth);
+
+        if (currentImageHeight > currentImageWidth) {
+            height = window.innerHeight * 0.9 * 0.8;
+            width = currentImageWidth * (height / currentImageHeight)
+        }
+
+        if (width > window.innerWidth * 0.9) {
+            width = window.innerWidth * 0.9;
+            height = currentImageHeight * (width / currentImageWidth);
+        }
+        return { width: width + 'px', height: height + 'px' };
+    }
+
+    const next = (e: React.MouseEvent<HTMLButtonElement>) => {
+        currentImageIndex++;
+        if (currentImageIndex >= galleryImages.length) {
+            currentImageIndex = 0;
+        }
+        props.setImageToView(currentImageIndex);
+        highLightButton(e.target);
+    }
+
+    const previous = (e: React.MouseEvent<HTMLButtonElement>) => {
+        currentImageIndex--;
+        if (currentImageIndex < 0) {
+            currentImageIndex = galleryImages.length - 1;
+        }
+        props.setImageToView(currentImageIndex);
+        highLightButton(e.target);
+    }
+
+    const setDimensions = () => {
+        if (imageRef.current && descriptionRef.current) {
+            imageRef.current.style.maxHeight = window.innerHeight * 0.9 * 0.8 + 'px';
+            imageRef.current.style.maxWidth = window.innerHeight * 0.9 * 0.8 * (currentImageWidth / currentImageHeight) + 'px';
+            descriptionRef.current.style.maxWidth = imageRef.current.style.maxWidth;
+            imageRef.current.style.width = dimensions().width;
+            descriptionRef.current.style.width = imageRef.current.style.width;
+            imageRef.current.style.height = dimensions().height;
+        }
+    }
+
+    const highLightButton = async (target: any) => {
+        target.classList.add('clicked');
+        await new Promise(res => setTimeout(res, 500));
+        target.classList.remove('clicked');
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', setDimensions);
+        return () => {
+            window.removeEventListener('resize', setDimensions)
+        };
+    }, []);
+
+    return (
+        <div className="gallery-modal-container">
+            <div className="zoomed-image">
+                <div ref={containerRef} className="image-container">
+                    <img
+                        ref={imageRef}
+                        src={src}
+                        alt={galleryImages[currentImageIndex].alt} />
+                </div>
+                <div ref={descriptionRef} className="description">
+                    <p className="body-text">{galleryImages[currentImageIndex].text}</p>
+                    <button className="previous" onClick={previous}><i className="fas fa-arrow-alt-circle-left"></i></button>
+                    <button className="next" onClick={next}><i className="fas fa-arrow-alt-circle-right"></i></button>
+                </div>
+                <button className="close-gallery" onClick={(e) => {
+                    props.closeGallery(e);
+                }}>
+                    <i className="fas fa-window-close"></i>
+                </button>
+            </div>
+        </div>
+    );
+}
+
 const Gallery = (props: GalleryProps) => {
     const [currentImage, setCurrentImage] = useState<any>(null);
-    const [currentImageIndex, setCurrentImageIndex] = useState(-1);
 
     const closeGallery = (e: React.MouseEvent<HTMLButtonElement>) => {
+        props.contentDiv.removeAttribute('style');
         setCurrentImage(null);
     }
 
-    const setImageToView = (imageInfo: GalleryImageObject, index: number) => {
-        setCurrentImageIndex(index);
-        setCurrentImage(<GalleryModal setImageToView={setImageToView} currentIndex={index} imageInfo={imageInfo} closeGallery={closeGallery} />);
+    const setImageToView = (index: number) => {
+        props.contentDiv.style.zIndex = '5';
+        setCurrentImage(<GalleryModal currentIndex={index} setImageToView={setImageToView} closeGallery={closeGallery} />);
     }
 
     return (

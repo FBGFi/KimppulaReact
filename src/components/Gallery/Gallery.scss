@@ -37,8 +37,6 @@
             position: relative;
 
             .image-container{
-                width: 100%;
-                height: 100%;
                 background-size: cover;
                 background-repeat: no-repeat;
                 display: flex;
@@ -46,32 +44,42 @@
             }
             .description{
                 background-color: #FFF;
-                padding: clamp(20px, 10%, 40px);
-                margin-right: auto;
-                width: 100%;
+                display: flex;
+                padding: 10px;
+                position: relative;
+                p{
+                    width: 100%;
+                    text-align: center;
+                    margin: auto;
+                }
             }
 
             button{
-                position: absolute;
-                font-size: 30px;
                 border: 0;
                 background: none;
                 padding: 0;
-                transition: filter 0.3s;
                 
-                &:hover{
-                    filter: invert(1);
+                &.clicked{
+                    animation: button_click 0.5s;
                 }
             }
             .close-gallery{
+                font-size: 30px;
+                position: absolute;
                 right: 10px;
                 top: 10px;
                 height: 30px;
+
+                &:hover{
+                    filter: invert(0.5);
+                }
             }
                   
             .previous, .next{
-                transform: translateY(-50%);
-                top: 50%;
+                color: #FFF;
+                font-size: 40px;
+                position: fixed;
+                bottom: 10px;
             }
             .previous{
                 left: 10px;
@@ -80,5 +88,17 @@
                 right: 10px;
             }
         }
+    }
+}
+
+@keyframes button_click{
+    0%{
+        filter: invert(0);
+    }
+    25%{
+        filter: invert(0.75);
+    }
+    100%{
+        filter: invert(0);
     }
 }
