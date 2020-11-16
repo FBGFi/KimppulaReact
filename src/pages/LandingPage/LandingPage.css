@@ -52,4 +52,34 @@
 .LandingPage img {
   width: 100%;
 }
+
+.LandingPage img.loading {
+  width: 50px !important;
+  min-width: 0px !important;
+  margin: auto;
+  -webkit-animation: image_loading infinite 1s;
+          animation: image_loading infinite 1s;
+}
+
+@-webkit-keyframes image_loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes image_loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
 /*# sourceMappingURL=LandingPage.css.map */

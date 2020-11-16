@@ -10,6 +10,7 @@ const galleryImages = window._IMAGES.gallery;
 let currentImageIndex = 0;
 let currentImageWidth = 0;
 let currentImageHeight = 0;
+let switching = false;
 
 interface GalleryModalProps {
     closeGallery: Function,
@@ -77,6 +78,9 @@ const GalleryModal = (props: GalleryModalProps) => {
     const imageRef = useRef<HTMLImageElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const descriptionRef = useRef<HTMLDivElement>(null);
+    const previousRef = useRef<HTMLButtonElement>(null);
+    const nextRef = useRef<HTMLButtonElement>(null);
+    const closeRef = useRef<HTMLButtonElement>(null);
     currentImageIndex = props.currentIndex;
 
     let image = new Image();
@@ -145,10 +149,38 @@ const GalleryModal = (props: GalleryModalProps) => {
         target.classList.remove('clicked');
     }
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if(switching) return;
+        switching = true;
+        
+        switch (e.key) {
+            case "ArrowRight":
+                    if(nextRef.current) nextRef.current.click();
+                break;
+            case "ArrowLeft":
+                    if(previousRef.current) previousRef.current.click();
+                break;
+            case "Escape": 
+                    if(closeRef.current) closeRef.current.click();
+                break;
+            default:
+                break;
+        }       
+    }
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+        switching = false;    
+    }
+
     useEffect(() => {
         window.addEventListener('resize', setDimensions);
+        document.onkeydown = handleKeyDown;
+        document.onkeyup = handleKeyUp;
         return () => {
-            window.removeEventListener('resize', setDimensions)
+            switching = false;
+            window.removeEventListener('resize', setDimensions);
+            document.onkeypress = null;
+            document.onkeyup = null;
         };
     }, []);
 
@@ -164,10 +196,10 @@ const GalleryModal = (props: GalleryModalProps) => {
                 </div>
                 <div ref={descriptionRef} className="description">
                     <p className="body-text">{galleryImages[currentImageIndex].text}</p>
-                    <button className="previous" onClick={previous}><i className="fas fa-arrow-alt-circle-left"></i></button>
-                    <button className="next" onClick={next}><i className="fas fa-arrow-alt-circle-right"></i></button>
+                    <button ref={previousRef} className="previous" onClick={previous}><i className="fas fa-arrow-alt-circle-left"></i></button>
+                    <button ref={nextRef} className="next" onClick={next}><i className="fas fa-arrow-alt-circle-right"></i></button>
                 </div>
-                <button className="close-gallery" onClick={(e) => {
+                <button ref={closeRef} className="close-gallery" onClick={(e) => {
                     props.closeGallery(e);
                 }}>
                     <i className="fas fa-window-close"></i>

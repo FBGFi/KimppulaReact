@@ -12,7 +12,7 @@ import ContactsPage from "../../pages/ContactsPage";
 interface ContentProps {
     paddingBottom: number
     images: {
-        ajanKohtaista: String
+        ajanKohtaista: string
     }
 }
 

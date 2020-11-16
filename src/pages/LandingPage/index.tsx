@@ -1,15 +1,30 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import './LandingPage.css';
+
+import loadingIcon from '../../assets/images/loading.svg';
 
 import WebTexts from "../../constants/interfaces/WebTexts";
 
 interface LandingPageProps {
     webTexts: WebTexts,
-    banner: String
+    banner: string
 }
 
 const LandingPage = (props: LandingPageProps) => {
+    const bannerRef = useRef<HTMLImageElement>(null);
     const texts = props.webTexts.aloitusSivu;
+
+    let img = new Image();
+    let src = `${process.env.PUBLIC_URL}/images/${props.banner}`;
+
+    img.onload = () => {
+        if(bannerRef.current){
+            bannerRef.current.src = src;
+            bannerRef.current.classList.remove('loading');
+        }        
+    };
+
+    img.src = src;
 
     return (
         <div className="LandingPage">
@@ -24,7 +39,7 @@ const LandingPage = (props: LandingPageProps) => {
                     );
                 })}
             </div>          
-            {props.banner !== "" ? <img draggable={false} alt="Ajankohtaista" src={`${process.env.PUBLIC_URL}/images/${props.banner}`} /> : null}
+            {props.banner !== "" ? <img className="loading" ref={bannerRef} draggable={false} alt="Ajankohtaista" src={loadingIcon} /> : null}
         </div>
     );
 }

@@ -1,5 +1,4 @@
-import { render } from '@testing-library/react';
-import React, { Component, createRef, RefObject } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './LoadingScreen.css';
 
 import logo from '../../assets/images/logo.svg';
@@ -8,64 +7,50 @@ import GalleryImageObject from "../../constants/interfaces/GalleryImageObject";
 
 // @ts-ignore
 const preloadjs = window.createjs;
+// @ts-ignore
+const webImages = window._IMAGES;
 
-interface ILoadingScreen {
-    queue: any,
-    handleLoad: Function,
-    handleLoadComplete: Function,
-    loadBarRef: RefObject<HTMLDivElement>
-    loadingScreenRef: RefObject<HTMLDivElement>
-}
 interface LoadingScreenProps {
     setPageLoaded: Function,
     images: Array<GalleryImageObject>
 }
 
-class LoadingScreen extends Component<LoadingScreenProps> implements ILoadingScreen {
-    queue;
-    loadBarRef = createRef<HTMLDivElement>();
-    loadingScreenRef = createRef<HTMLDivElement>();
-    logoRef = createRef<HTMLImageElement>();
+const LoadingScreen = (props: LoadingScreenProps) => {
+    const queue = new preloadjs.LoadQueue();
+    const loadBarRef = useRef<HTMLDivElement>(null);
+    const loadingScreenRef = useRef<HTMLDivElement>(null);
+    const logoRef = useRef<HTMLImageElement>(null);
 
-    state = {
-        loadState: 0
-    }
-
-    constructor(props: LoadingScreenProps) {
-        super(props)
-        this.queue = new preloadjs.LoadQueue();
-    }
-
-    handleLoad() {
-        if (this.loadBarRef.current && this.logoRef.current) {
-            this.loadBarRef.current.style.width = this.queue.progress * 100 + '%';
-            this.logoRef.current.style.filter = `invert(1) blur(${10 - this.queue.progress*10}px)`;           
+    const handleLoad = () => {
+        if (loadBarRef.current && logoRef.current) {
+            loadBarRef.current.style.width = queue.progress * 100 + '%';
+            logoRef.current.style.filter = `invert(1) blur(${10 - queue.progress * 10}px)`;
         }
     }
 
-    async handleLoadComplete() {
+    const handleLoadComplete = async () => {
         await new Promise(res => setTimeout(() => res(), 800));
-        this.loadingScreenRef.current?.classList.add('fading');
+        loadingScreenRef.current?.classList.add('fading');
         await new Promise(res => setTimeout(() => res(), 2000));
-        this.props.setPageLoaded(true)
+        props.setPageLoaded(true)
     }
 
-    componentDidMount() {
-        for (let img of this.props.images) {
-            this.queue.loadFile({id:img, src: `${process.env.PUBLIC_URL}/images/gallery/${img.file}`, type: preloadjs.Types.IMAGE });
+    useEffect(() => {
+        for (let img of webImages.gallery) {
+            queue.loadFile({ src: `${process.env.PUBLIC_URL}/images/gallery/${img.file}`, type: preloadjs.Types.IMAGE });
         }
-        this.queue.on('fileload',() => this.handleLoad());
-        
-        this.queue.on('complete', () => this.handleLoadComplete());
-    }
+        queue.loadFile({ src: `${process.env.PUBLIC_URL}/images/gallery/${webImages.ajanKohtaista}`, type: preloadjs.Types.IMAGE });
+        queue.loadFile({ src: `${process.env.PUBLIC_URL}/images/gallery/${webImages.julkiSivu}`, type: preloadjs.Types.IMAGE });
+        queue.on('fileload', () => handleLoad());
 
-    render() {
-        return (
-            <div ref={this.loadingScreenRef} className="LoadingScreen">
-                <img ref={this.logoRef} className="logo" src={logo} alt="logo" />
-                <div ref={this.loadBarRef} className="loading-bar"></div>
-            </div>
-        );
-    }
+        queue.on('complete', () => handleLoadComplete());
+    }, []);
+
+    return (
+        <div ref={loadingScreenRef} className="LoadingScreen">
+            <img ref={logoRef} className="logo" src={logo} alt="logo" />
+            <div ref={loadBarRef} className="loading-bar"></div>
+        </div>
+    );
 }
 export default LoadingScreen;
