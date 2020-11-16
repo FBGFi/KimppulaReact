@@ -30,7 +30,7 @@ const OpeningHours = (props: OpeningHoursProps) => {
     return (
         <div className="OpeningHours">
             <ul className="body-text">
-            <li>Aukioloajat:</li>
+            <li className="title-text">Aukioloajat:</li>
             {Object.keys(hours).map(key => <li key={key} className="body-text">{key} <b>{hours[key]}</b></li>)}
             </ul>
         </div>

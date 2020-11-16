@@ -4,7 +4,8 @@ import './LandingPage.css';
 import WebTexts from "../../constants/interfaces/WebTexts";
 
 interface LandingPageProps {
-    webTexts: WebTexts
+    webTexts: WebTexts,
+    banner: String
 }
 
 const LandingPage = (props: LandingPageProps) => {
@@ -22,7 +23,8 @@ const LandingPage = (props: LandingPageProps) => {
                         <p key={index.toString()} className={className}>{text}</p>
                     );
                 })}
-            </div>
+            </div>          
+            {props.banner !== "" ? <img draggable={false} alt="Ajankohtaista" src={`${process.env.PUBLIC_URL}/images/${props.banner}`} /> : null}
         </div>
     );
 }

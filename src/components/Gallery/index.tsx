@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Gallery.css';
 
+import loadingIcon from '../../assets/images/loading.svg';
+
 import GalleryImageObject from "../../constants/interfaces/GalleryImageObject";
 
 // @ts-ignore
@@ -36,7 +38,10 @@ const GalleryImage = (props: GalleryImageProps) => {
         height = image.height;
         if (containerRef.current && imageRef.current) {
             containerRef.current.style.height = containerRef.current.offsetWidth + 'px';
-            width < height ? imageRef.current.style.maxWidth = '100%' : imageRef.current.style.maxHeight = '100%'
+            width < height ? imageRef.current.style.maxWidth = '100%' : imageRef.current.style.maxHeight = '100%';
+            imageRef.current.src = src;
+            imageRef.current.classList.remove('loading');
+            containerRef.current.style.display = "inline";
         }
     }
 
@@ -56,13 +61,13 @@ const GalleryImage = (props: GalleryImageProps) => {
     }, [])
 
     return (
-        <div ref={containerRef} className="image-container" >
+        <div ref={containerRef} style={{display: "flex"}} className="image-container" >
             <img
                 draggable={false}
                 ref={imageRef}
                 onClick={() => props.onImageClick(props.index)}
-                className="gallery-image"
-                src={src}
+                className="gallery-image loading"
+                src={loadingIcon}
                 alt={props.imageInfo.alt} />
         </div>
     );
@@ -82,6 +87,8 @@ const GalleryModal = (props: GalleryModalProps) => {
         currentImageHeight = image.height;
         if (containerRef.current && imageRef.current) {
             setDimensions();
+            imageRef.current.src = src;
+            imageRef.current.classList.remove('loading');
         }
     }
 
@@ -151,8 +158,9 @@ const GalleryModal = (props: GalleryModalProps) => {
                 <div ref={containerRef} className="image-container">
                     <img
                         ref={imageRef}
-                        src={src}
-                        alt={galleryImages[currentImageIndex].alt} />
+                        src={loadingIcon}
+                        alt={galleryImages[currentImageIndex].alt}
+                        className='loading' />
                 </div>
                 <div ref={descriptionRef} className="description">
                     <p className="body-text">{galleryImages[currentImageIndex].text}</p>

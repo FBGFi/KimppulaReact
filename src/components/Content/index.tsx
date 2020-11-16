@@ -24,7 +24,7 @@ const mousePos = { top: 0, y: 0 };
 let lastScroll = 0;
 
 const Content = (props: ContentProps) => {
-    const [currentPage, setCurrentPage] = useState(<LandingPage webTexts={webTexts} />);
+    const [currentPage, setCurrentPage] = useState(<LandingPage banner={props.images.ajanKohtaista} webTexts={webTexts} />);
     const [contentMaxed, setContentMaxed] = useState(false);
     const contentRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -73,13 +73,13 @@ const Content = (props: ContentProps) => {
                 }
                 break;
             case 'tuotteet':
-                setCurrentPage(<ProductsPage banner={props.images.ajanKohtaista} webTexts={webTexts} />);
+                setCurrentPage(<ProductsPage webTexts={webTexts} />);
                 break;
             case 'yhteystiedot':
                 setCurrentPage(<ContactsPage webTexts={webTexts} />);
                 break;
             default:
-                setCurrentPage(<LandingPage webTexts={webTexts} />);
+                setCurrentPage(<LandingPage banner={props.images.ajanKohtaista} webTexts={webTexts} />);
                 break;
         }
         if(containerRef.current){          

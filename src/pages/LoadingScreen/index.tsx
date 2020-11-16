@@ -4,19 +4,21 @@ import './LoadingScreen.css';
 
 import logo from '../../assets/images/logo.svg';
 
+import GalleryImageObject from "../../constants/interfaces/GalleryImageObject";
+
 // @ts-ignore
 const preloadjs = window.createjs;
 
 interface ILoadingScreen {
     queue: any,
-    handleLoadProgress: Function,
+    handleLoad: Function,
     handleLoadComplete: Function,
     loadBarRef: RefObject<HTMLDivElement>
     loadingScreenRef: RefObject<HTMLDivElement>
 }
 interface LoadingScreenProps {
     setPageLoaded: Function,
-    images: Array<String>
+    images: Array<GalleryImageObject>
 }
 
 class LoadingScreen extends Component<LoadingScreenProps> implements ILoadingScreen {
@@ -34,7 +36,7 @@ class LoadingScreen extends Component<LoadingScreenProps> implements ILoadingScr
         this.queue = new preloadjs.LoadQueue();
     }
 
-    handleLoadProgress() {
+    handleLoad() {
         if (this.loadBarRef.current && this.logoRef.current) {
             this.loadBarRef.current.style.width = this.queue.progress * 100 + '%';
             this.logoRef.current.style.filter = `invert(1) blur(${10 - this.queue.progress*10}px)`;           
@@ -49,10 +51,11 @@ class LoadingScreen extends Component<LoadingScreenProps> implements ILoadingScr
     }
 
     componentDidMount() {
-        this.queue.on('progress', () => this.handleLoadProgress());
-        for (let img in this.props.images) {
-            this.queue.loadFile({ src: `${process.env.PUBLIC_URL}/images/gallery/${img}`, type: preloadjs.Types.IMAGE });
+        for (let img of this.props.images) {
+            this.queue.loadFile({id:img, src: `${process.env.PUBLIC_URL}/images/gallery/${img.file}`, type: preloadjs.Types.IMAGE });
         }
+        this.queue.on('fileload',() => this.handleLoad());
+        
         this.queue.on('complete', () => this.handleLoadComplete());
     }
 

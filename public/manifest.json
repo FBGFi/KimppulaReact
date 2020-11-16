@@ -1,6 +1,8 @@
 {
-  "short_name": "Kukka-Kimppula",
-  "name": "Valkeakoskella Kenraalintorilla sijaitseva täyden palvelun kukkamyymälä.",
+  "short_name": "Kimppula",
+  "author": "FBGFi",
+  "name": "Kukka-Kimppula",
+  "description": "Valkeakoskella Kenraalintorilla sijaitseva täyden palvelun kukkamyymälä.",
   "icons": [
     {
       "src": "favicon.ico",

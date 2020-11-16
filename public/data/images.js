@@ -28,5 +28,6 @@ window._IMAGES = {
         }
     ],
     julkiSivu: "julkisivu.jpg",
+    // jätä tyhjäksi ("") jos ei ole mitään ajankohtaista
     ajanKohtaista: "1.jpg"
 };

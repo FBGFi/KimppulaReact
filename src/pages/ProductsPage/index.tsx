@@ -5,7 +5,6 @@ import WebTexts from "../../constants/interfaces/WebTexts";
 
 interface ProductsPageProps{
     webTexts: WebTexts
-    banner: String
 }
 
 const ProductsPage = (props: ProductsPageProps) => {
@@ -21,7 +20,6 @@ const ProductsPage = (props: ProductsPageProps) => {
                         <p key={index.toString()} className={className}>{text}</p>
                     );
             })}
-            <img draggable={false} alt="Ajankohtaista" src={`${process.env.PUBLIC_URL}/images/${props.banner}`} />
         </div>
     );
 }

@@ -2,6 +2,13 @@
     position: relative;
     cursor: auto;
 
+    .loading{
+        width: 50px !important;
+        min-width: 0px !important;
+        margin: auto;
+        animation: image_loading infinite 1s;
+    }
+
     .images{
         display: grid;
         grid-template-columns: 50% 50%;
@@ -37,8 +44,6 @@
             position: relative;
 
             .image-container{
-                background-size: cover;
-                background-repeat: no-repeat;
                 display: flex;
                 max-width: 1536px;
             }
@@ -100,5 +105,14 @@
     }
     100%{
         filter: invert(0);
+    }
+}
+
+@keyframes image_loading{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
     }
 }
