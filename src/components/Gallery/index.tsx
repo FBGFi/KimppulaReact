@@ -7,10 +7,16 @@ import GalleryImageObject from "../../constants/interfaces/GalleryImageObject";
 
 // @ts-ignore
 const galleryImages = window._IMAGES.gallery;
+
+// global variables for changing the current dimensions
 let currentImageIndex = 0;
 let currentImageWidth = 0;
 let currentImageHeight = 0;
 let switching = false;
+
+// global variables to prevent image being clicked while dragged
+let startY = 0;
+let endY = 0;
 
 interface GalleryModalProps {
     closeGallery: Function,
@@ -54,10 +60,16 @@ const GalleryImage = (props: GalleryImageProps) => {
         }
     }
 
+    const setImageToView = (e: any) => {
+        endY = e.target.getBoundingClientRect().y
+        if(startY !== endY) return;
+        props.onImageClick(props.index);
+    }
+
     useEffect(() => {
-        window.addEventListener('resize', setToSquare)
+        window.addEventListener('resize', setToSquare);
         return () => {
-            window.removeEventListener('resize', setToSquare)
+            window.removeEventListener('resize', setToSquare);
         }
     }, [])
 
@@ -66,7 +78,7 @@ const GalleryImage = (props: GalleryImageProps) => {
             <img
                 draggable={false}
                 ref={imageRef}
-                onClick={() => props.onImageClick(props.index)}
+                onClick={setImageToView}
                 className="gallery-image loading"
                 src={loadingIcon}
                 alt={props.imageInfo.alt} />
@@ -221,6 +233,17 @@ const Gallery = (props: GalleryProps) => {
         props.contentDiv.style.zIndex = '5';
         setCurrentImage(<GalleryModal currentIndex={index} setImageToView={setImageToView} closeGallery={closeGallery} />);
     }
+
+    const mouseDownHandler = (e: any) => {
+        startY = e.target.getBoundingClientRect().y;   
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', mouseDownHandler);
+        return () => {
+            document.removeEventListener('mousedown', mouseDownHandler);
+        }
+    }, []);
 
     return (
         <div className="Gallery">

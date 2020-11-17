@@ -24,7 +24,7 @@ const mousePos = { top: 0, y: 0 };
 let lastScroll = 0;
 
 const Content = (props: ContentProps) => {
-    const [currentPage, setCurrentPage] = useState(<LandingPage banner={props.images.ajanKohtaista} webTexts={webTexts} />);
+    const [currentPage, setCurrentPage] = useState(<LandingPage webTexts={webTexts} />);
     const [contentMaxed, setContentMaxed] = useState(false);
     const contentRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -35,18 +35,11 @@ const Content = (props: ContentProps) => {
             // Change the cursor and prevent user from selecting the text
             mousePos.top = containerRef.current.scrollTop;
             mousePos.y = e.clientY;
-            containerRef.current.style.cursor = 'grabbing';
-            containerRef.current.style.userSelect = 'none';
         }
-
         document.addEventListener('mousemove', mouseMoveHandler);
     };
 
     const mouseUpHandler = function () {
-        if (containerRef.current) {
-            containerRef.current.style.cursor = 'grab';
-            containerRef.current.style.removeProperty('user-select');
-        }
         document.removeEventListener('mousemove', mouseMoveHandler);
     };
 
@@ -69,7 +62,7 @@ const Content = (props: ContentProps) => {
         switch (destination) {
             case 'etusivu':
                 if(contentRef.current){                   
-                    setCurrentPage(<HomePage contentDiv={contentRef.current} />);
+                    setCurrentPage(<HomePage banner={props.images.ajanKohtaista} contentDiv={contentRef.current} />);
                 }
                 break;
             case 'tuotteet':
@@ -79,7 +72,7 @@ const Content = (props: ContentProps) => {
                 setCurrentPage(<ContactsPage webTexts={webTexts} />);
                 break;
             default:
-                setCurrentPage(<LandingPage banner={props.images.ajanKohtaista} webTexts={webTexts} />);
+                setCurrentPage(<LandingPage webTexts={webTexts} />);
                 break;
         }
         if(containerRef.current){          

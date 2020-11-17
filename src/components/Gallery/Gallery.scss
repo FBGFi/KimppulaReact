@@ -5,7 +5,7 @@
     .loading{
         width: 50px !important;
         min-width: 0px !important;
-        margin: auto;
+        margin: 50px auto;
         animation: image_loading infinite 1s;
     }
 
@@ -48,6 +48,7 @@
             .image-container{
                 display: flex;
                 max-width: 1536px;
+                background-color: #ccc;
             }
             .description{
                 background-color: #FFF;

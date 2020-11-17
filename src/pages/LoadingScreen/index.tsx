@@ -32,7 +32,7 @@ const LoadingScreen = (props: LoadingScreenProps) => {
         await new Promise(res => setTimeout(() => res(), 800));
         loadingScreenRef.current?.classList.add('fading');
         await new Promise(res => setTimeout(() => res(), 2000));
-        props.setPageLoaded(true)
+        props.setPageLoaded(true);
     }
 
     useEffect(() => {

@@ -26,60 +26,25 @@
   margin-top: 0;
 }
 
-.LandingPage .shop-container {
-  margin-top: auto;
+.LandingPage .shop-links {
+  margin-top: -30px;
+  margin-bottom: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.LandingPage .shop-container a:first-child {
-  margin: auto 20px auto auto;
+.LandingPage .shop-links a {
+  margin-left: auto;
+  color: black;
+  font-size: 1.1rem;
 }
 
-.LandingPage .shop-container .interflora {
-  width: 100%;
-}
-
-.LandingPage .shop-container .ekukka {
-  width: 100%;
-}
-
-.LandingPage img {
-  width: 100%;
-}
-
-.LandingPage img.loading {
-  width: 50px !important;
-  min-width: 0px !important;
-  margin: auto;
-  -webkit-animation: image_loading infinite 1s;
-          animation: image_loading infinite 1s;
-}
-
-@-webkit-keyframes image_loading {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
-@keyframes image_loading {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+.LandingPage .OpeningHours {
+  text-align: right;
 }
 /*# sourceMappingURL=LandingPage.css.map */

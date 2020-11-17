@@ -21,7 +21,8 @@ window._WEB_TEXTS = {
     },
     // aloitussivun teksti
     aloitusSivu: [
-        "Kukkakauppa Kimppula on Valkeakoskella Kenraalintorilla sijaitseva täyden palvelun kukkamyymälä. Kimppulan toiminnasta vastaa kokenut floristi ja puutarhuri Laura Alhola."
+        "Kukkakauppa Kimppula on Valkeakoskella Kenraalintorilla sijaitseva täyden palvelun kukkamyymälä. Kimppulan toiminnasta vastaa kokenut floristi ja puutarhuri Laura Alhola.",
+        "Voit tilata kukat myös suoraan verkkokaupasta"
     ],
     // tuotteet ja palvelut sivun teksti
     tuotteet: [

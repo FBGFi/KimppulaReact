@@ -11,37 +11,22 @@
             margin-top: 0;
         }
     }
-    .shop-container{
-        margin-top: auto;
+
+    .shop-links{
+        margin-top: -30px;
+        margin-bottom: 40px;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
 
-        a:first-child{
-            margin: auto 20px auto auto;
-        }
-        .interflora{
-            width: 100%;
-        }
-        .ekukka{
-            width: 100%;
+        a{
+            margin-left: auto;
+            color: black;
+            font-size: 1.1rem;
         }
     }
 
-    img{
-        width: 100%;
-        &.loading{
-            width: 50px !important;
-            min-width: 0px !important;
-            margin: auto;
-            animation: image_loading infinite 1s;
-        }
+    .OpeningHours{
+        text-align: right;
     }
-}
-@keyframes image_loading{
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
+
 }

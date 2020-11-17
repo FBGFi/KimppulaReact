@@ -1,30 +1,14 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import './LandingPage.css';
-
-import loadingIcon from '../../assets/images/loading.svg';
 
 import WebTexts from "../../constants/interfaces/WebTexts";
 
 interface LandingPageProps {
-    webTexts: WebTexts,
-    banner: string
+    webTexts: WebTexts
 }
 
 const LandingPage = (props: LandingPageProps) => {
-    const bannerRef = useRef<HTMLImageElement>(null);
     const texts = props.webTexts.aloitusSivu;
-
-    let img = new Image();
-    let src = `${process.env.PUBLIC_URL}/images/${props.banner}`;
-
-    img.onload = () => {
-        if(bannerRef.current){
-            bannerRef.current.src = src;
-            bannerRef.current.classList.remove('loading');
-        }        
-    };
-
-    img.src = src;
 
     return (
         <div className="LandingPage">
@@ -32,14 +16,17 @@ const LandingPage = (props: LandingPageProps) => {
                 {texts.map((text: String, index: number) => {
                     let className = 'body-text';
 
-                    className += index%2 === 0 ? ' left' : ' right';                   
-                    
+                    className += index % 2 === 0 ? ' left' : ' right';
+
                     return (
                         <p key={index.toString()} className={className}>{text}</p>
                     );
                 })}
-            </div>          
-            {props.banner !== "" ? <img className="loading" ref={bannerRef} draggable={false} alt="Ajankohtaista" src={loadingIcon} /> : null}
+            </div>
+            <div className="shop-links">
+                <a className="title-text" href={props.webTexts.linkit.ekukka} title="eKukan verkkokauppa" target="_blank" rel="noreferrer">eKukan verkkokauppa</a>
+                <a className="title-text" href={props.webTexts.linkit.interflora} title="Interfloran verkkokauppa" target="_blank" rel="noreferrer">Interfloran verkkokauppa</a>
+            </div>
         </div>
     );
 }

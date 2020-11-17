@@ -6,7 +6,7 @@
 .Gallery .loading {
   width: 50px !important;
   min-width: 0px !important;
-  margin: auto;
+  margin: 50px auto;
   -webkit-animation: image_loading infinite 1s;
           animation: image_loading infinite 1s;
 }
@@ -66,6 +66,7 @@
   display: -ms-flexbox;
   display: flex;
   max-width: 1536px;
+  background-color: #ccc;
 }
 
 .Gallery .gallery-modal-container .zoomed-image .description {
