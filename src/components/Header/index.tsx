@@ -62,30 +62,21 @@ const Header = (props: HeaderProps) => {
 
                 <div className="button-container">
                     <button
-                        style={
-                            activeMenu === "etusivu" ? { fontWeight: "bold", transform: "scale(1.1)" } : {}
-                        }
-                        className="menu-link title-text"
-                        onClick={() => clickedLink("etusivu")}>Etusivu</button>
+                        className={activeMenu === "etusivu" ? "menu-link title-text active" : "menu-link title-text"}
+                        onClick={() => clickedLink("etusivu")}>Meistä</button>
                     <div className="slider" style={activeMenu === "etusivu" ? { width: "100%" } : {}}></div>
                 </div>
 
                 <div className="button-container">
                     <button
-                        style={
-                            activeMenu === "tuotteet" ? { fontWeight: "bold", transform: "scale(1.1)" } : {}
-                        }
-                        className="menu-link title-text"
+                        className={activeMenu === "tuotteet" ? "menu-link title-text active" : "menu-link title-text"}
                         onClick={() => clickedLink("tuotteet")}>Tuotteet&Palvelut</button>
                     <div className="slider" style={activeMenu === "tuotteet" ? { width: "100%" } : {}}></div>
                 </div>
 
                 <div className="button-container">
                     <button
-                        style={
-                            activeMenu === "yhteystiedot" ? { fontWeight: "bold", transform: "scale(1.1)" } : {}
-                        }
-                        className="menu-link title-text"
+                        className={activeMenu === "yhteystiedot" ? "menu-link title-text active" : "menu-link title-text"}
                         onClick={() => clickedLink("yhteystiedot")}>Yhteystiedot</button>
                     <div className="slider" style={activeMenu === "yhteystiedot" ? { width: "100%" } : {}}></div>
                 </div>

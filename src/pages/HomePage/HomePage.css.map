@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AACI,SADK,CACL,OAAO,CAAA;EACH,KAAK,EAAE,IAAI;CAOd;;AATL,AAGQ,SAHC,CACL,OAAO,AAEF,QAAQ,CAAA;EACL,KAAK,EAAE,eAAe;EACtB,SAAS,EAAE,cAAc;EACzB,MAAM,EAAE,IAAI;EACZ,SAAS,EAAE,yBAAyB;CACvC;;AAIT,UAAU,CAAV,aAAU;EACN,EAAE;IACE,SAAS,EAAE,YAAY;;EAE3B,IAAI;IACA,SAAS,EAAE,cAAc",
-    "sources": [
-        "HomePage.scss"
-    ],
-    "names": [],
-    "file": "HomePage.css"
-}

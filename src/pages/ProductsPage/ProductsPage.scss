@@ -1,2 +1,23 @@
 .ProductsPage{
+    .shop-container{
+        margin-bottom: 30px;
+        img{
+            width: 100%;
+        }
+    }
+    .row:not(:last-child){
+        margin-bottom: 30px;
+    }
+    .row{
+        ul{
+            list-style: circle;
+
+            li{
+                margin-bottom: 5px;
+            }
+        }
+        .title-text{
+            font-size: 1.2rem;
+        }
+    }
 }

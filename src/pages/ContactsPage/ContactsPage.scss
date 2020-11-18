@@ -3,5 +3,12 @@
     ul{
         list-style: none;
         padding: 0;
+        margin-bottom: 0;
+
+        &.separate{
+            li:not(:last-child){
+                margin-bottom: 10px;
+            }
+        }
     }
 }

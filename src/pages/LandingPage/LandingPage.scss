@@ -18,15 +18,61 @@
         display: flex;
         flex-direction: column;
 
+        p{
+            text-align: right;
+            margin-left: auto;
+            width: 90%;
+        }
+
         a{
             margin-left: auto;
             color: black;
             font-size: 1.1rem;
+            &:hover{
+                filter: invert(0.2);
+            }
         }
     }
 
-    .OpeningHours{
-        text-align: right;
+    .hidden-texts{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        button{
+            top: -30px;
+            left: 0;
+            font-size: 1.1rem;
+            background: none;
+            border: 0;
+            text-decoration: underline;
+            position: absolute;
+
+            &:hover{
+                filter: invert(0.2);
+            }
+        }
+
+        .hidden-container{
+            display: flex;
+            opacity: 0;
+            flex-direction: column;
+            height: 80px;
+            overflow: hidden;
+            transition: height 0.5s;
+
+            &.show{
+                opacity: 1;
+                position: relative;
+                right: auto;
+                height: 100%;
+                margin-bottom: 40px;
+            }
+            p{
+                width: 90%;
+                margin-top: 0;
+            }
+        }
     }
 
 }

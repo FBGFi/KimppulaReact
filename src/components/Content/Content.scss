@@ -30,6 +30,12 @@ $contentWidth: clamp(500px, 40%, 800px);
         padding-right: clamp(40px,10%,60px);
         transition: opacity 0.5s;
 
+        &>div[class$="Page"]{
+            &>*:first-child{
+                margin-top: 0;
+            }
+        }
+
         &.fade{
             opacity: 0;
         }

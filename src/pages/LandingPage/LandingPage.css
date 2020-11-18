@@ -38,13 +38,74 @@
           flex-direction: column;
 }
 
+.LandingPage .shop-links p {
+  text-align: right;
+  margin-left: auto;
+  width: 90%;
+}
+
 .LandingPage .shop-links a {
   margin-left: auto;
   color: black;
   font-size: 1.1rem;
 }
 
-.LandingPage .OpeningHours {
-  text-align: right;
+.LandingPage .shop-links a:hover {
+  -webkit-filter: invert(0.2);
+          filter: invert(0.2);
+}
+
+.LandingPage .hidden-texts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+}
+
+.LandingPage .hidden-texts button {
+  top: -30px;
+  left: 0;
+  font-size: 1.1rem;
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  position: absolute;
+}
+
+.LandingPage .hidden-texts button:hover {
+  -webkit-filter: invert(0.2);
+          filter: invert(0.2);
+}
+
+.LandingPage .hidden-texts .hidden-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 80px;
+  overflow: hidden;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+}
+
+.LandingPage .hidden-texts .hidden-container.show {
+  opacity: 1;
+  position: relative;
+  right: auto;
+  height: 100%;
+  margin-bottom: 40px;
+}
+
+.LandingPage .hidden-texts .hidden-container p {
+  width: 90%;
+  margin-top: 0;
 }
 /*# sourceMappingURL=LandingPage.css.map */

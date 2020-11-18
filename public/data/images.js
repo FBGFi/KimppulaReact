@@ -25,9 +25,19 @@ window._IMAGES = {
             file: "ruusuja.jpg",
             alt: "Kesäkukkajuliste",
             text: "Joku ilmotus jossain"
-        }
+        },
+        {
+            file: "kimppuja.jpg",
+            alt: "Kimppuja",
+            text: "Kimppulan kimppupöytä"
+        },
     ],
-    julkiSivu: "julkisivu.jpg",
-    // jätä tyhjäksi ("") jos ei ole mitään ajankohtaista
-    ajanKohtaista: "1.jpg"
+    // laita samaan järjestykseen kuin texts.js
+    employees: [
+        "laura.png",
+        "laura.png",
+        "laura.png",
+        "laura.png",
+    ],
+    julkiSivu: "kimppuja.jpg"
 };

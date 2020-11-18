@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACK,YADO,CACP,UAAU,CAAA;EACN,aAAa,EAAE,IAAI;CACtB",
+    "sources": [
+        "AboutUsPage.scss"
+    ],
+    "names": [],
+    "file": "AboutUsPage.css"
+}

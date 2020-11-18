@@ -1,1 +1,24 @@
-/* No CSS *//*# sourceMappingURL=ProductsPage.css.map */
+.ProductsPage .shop-container {
+  margin-bottom: 30px;
+}
+
+.ProductsPage .shop-container img {
+  width: 100%;
+}
+
+.ProductsPage .row:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.ProductsPage .row ul {
+  list-style: circle;
+}
+
+.ProductsPage .row ul li {
+  margin-bottom: 5px;
+}
+
+.ProductsPage .row .title-text {
+  font-size: 1.2rem;
+}
+/*# sourceMappingURL=ProductsPage.css.map */

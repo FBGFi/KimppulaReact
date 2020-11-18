@@ -2,18 +2,14 @@ import React, { useRef, useState, useEffect } from 'react';
 import './Content.css';
 
 import Header from "../Header";
-import Gallery from "../Gallery";
 
 import LandingPage from "../../pages/LandingPage";
-import HomePage from "../../pages/HomePage";
+import AboutUsPage from "../../pages/AboutUsPage";
 import ProductsPage from "../../pages/ProductsPage";
 import ContactsPage from "../../pages/ContactsPage";
 
 interface ContentProps {
     paddingBottom: number
-    images: {
-        ajanKohtaista: string
-    }
 }
 
 // @ts-ignore
@@ -62,7 +58,7 @@ const Content = (props: ContentProps) => {
         switch (destination) {
             case 'etusivu':
                 if(contentRef.current){                   
-                    setCurrentPage(<HomePage banner={props.images.ajanKohtaista} contentDiv={contentRef.current} />);
+                    setCurrentPage(<AboutUsPage webTexts={webTexts} contentDiv={contentRef.current} />);
                 }
                 break;
             case 'tuotteet':

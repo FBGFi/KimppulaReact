@@ -1,0 +1,32 @@
+.Employees {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  grid-row-gap: 15px;
+}
+
+.Employees .employee {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 3px;
+}
+
+.Employees .employee .title-text {
+  font-size: 1.2rem;
+}
+
+.Employees .employee img {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.Employees .employee * {
+  margin: 0 0 0 auto;
+}
+/*# sourceMappingURL=Employees.css.map */

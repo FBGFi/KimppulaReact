@@ -39,7 +39,7 @@ function App() {
           {webTexts.highLight !== "" ? <Highlight text={webTexts.highLight} /> : null}
           <div className="shader"></div>
         </div>
-        <Content images={images} paddingBottom={socialLinksPadding} />
+        <Content paddingBottom={socialLinksPadding} />
         <SocialLinks setPadding={setSocialLinksPadding} links={webTexts.linkit} />
         <img className="background-logo" src={logo} alt="logo" />
       </div>  

@@ -20,9 +20,9 @@ const ContactsPage = (props: ContactsPageProps) => {
                 <li>{props.webTexts.puhNro}</li>
             </ul>
             <p className="body-text">{props.webTexts.sPosti}</p>
-            <ul className="body-text">
-                <li style={{marginBottom: '10px'}}><span className="title-text">MobilePay:</span><br/>{props.webTexts.mobilePay}</li>
-                <li style={{marginBottom: '10px'}}><span className="title-text">Verkkolaskuosoite/OVT-tunnus:</span><br />{props.webTexts.verkkoLasku}</li>
+            <ul className="body-text separate">
+                <li><span className="title-text">MobilePay:</span><br/>{props.webTexts.mobilePay}</li>
+                <li><span className="title-text">Verkkolaskuosoite/OVT-tunnus:</span><br />{props.webTexts.verkkoLasku}</li>
                 <li><span className="title-text">Verkkolaskuoperaattori:</span><br />{props.webTexts.verkkoLaskuOperaattori}</li>
             </ul>
         </div>
