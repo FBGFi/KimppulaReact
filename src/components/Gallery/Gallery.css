@@ -46,6 +46,13 @@
   display: flex;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 2;
+  opacity: 1;
+  -webkit-transition: opacity 0.25s;
+  transition: opacity 0.25s;
+}
+
+.Gallery .gallery-modal-container.hidden {
+  opacity: 0;
 }
 
 .Gallery .gallery-modal-container .zoomed-image {

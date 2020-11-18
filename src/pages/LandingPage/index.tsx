@@ -1,4 +1,4 @@
-import React, {BaseSyntheticEvent, useRef} from 'react';
+import React, {useRef} from 'react';
 import './LandingPage.css';
 
 import WebTexts from "../../constants/interfaces/WebTexts";

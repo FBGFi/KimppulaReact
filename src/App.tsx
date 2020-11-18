@@ -19,12 +19,6 @@ function App() {
   const [pageLoaded, setPageLoaded] = useState(false);
 
   let loadingScreen = null;
-
-  const setHighLightPadding = (px: Number) => {
-    if(appRef.current){
-      appRef.current.style.paddingTop = `${px}px`;
-    }
-  }
   
   if(!pageLoaded){
     loadingScreen = <LoadingScreen images={images.gallery} setPageLoaded={setPageLoaded} />;

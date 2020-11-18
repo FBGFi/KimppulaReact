@@ -2,7 +2,9 @@ $contentWidth: clamp(500px, 40%, 800px);
 
 .Content{
     margin-left: auto;
-    width: $contentWidth;
+    min-width: 500px;
+    width: 40%;
+    max-width: 800px;
     height: 100vh;
     background-color: #fff;
     display: flex;
@@ -12,12 +14,11 @@ $contentWidth: clamp(500px, 40%, 800px);
     .fade-out{
         position: absolute;
         background: linear-gradient(#FFF, transparent);
-        width: 100%;
+        width: calc(100% - 4px);
         top: 0;
         height: 20px;
         right: 4px;
         z-index: 1;
-        clip-path: polygon(8px 0, 100% 0, 100% 100%, 8px 100%);
     }
 
     .content-container{
@@ -25,8 +26,11 @@ $contentWidth: clamp(500px, 40%, 800px);
         display: flex;
         flex-direction: column;
         overflow: auto;
+        padding-top: 40px;
         padding-top: clamp(40px,10%,60px);
+        padding-left: 40px;
         padding-left: clamp(40px,10%,60px);
+        padding-right: 40px;
         padding-right: clamp(40px,10%,60px);
         transition: opacity 0.5s;
 
@@ -45,6 +49,8 @@ $contentWidth: clamp(500px, 40%, 800px);
 @media(max-width:850px){
     .Content{
         width: 100% !important;
+        min-width: 100%;
+        max-width: 100%;
         height: 60vh;
         position: absolute;
         bottom: 0;
@@ -53,11 +59,5 @@ $contentWidth: clamp(500px, 40%, 800px);
         &.align-top{
             height: 100%;
         }
-    }
-}
-
-@media(max-width: 1180px){
-    .Content{
-        width: $contentWidth;
     }
 }

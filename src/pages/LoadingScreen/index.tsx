@@ -39,7 +39,9 @@ const LoadingScreen = (props: LoadingScreenProps) => {
         for (let img of webImages.gallery) {
             queue.loadFile({ src: `${process.env.PUBLIC_URL}/images/gallery/${img.file}`, type: preloadjs.Types.IMAGE });
         }
-        queue.loadFile({ src: `${process.env.PUBLIC_URL}/images/gallery/${webImages.ajanKohtaista}`, type: preloadjs.Types.IMAGE });
+        for (let img of webImages.employees) {
+            queue.loadFile({ src: `${process.env.PUBLIC_URL}/images/employees/${img.file}`, type: preloadjs.Types.IMAGE });
+        }
         queue.loadFile({ src: `${process.env.PUBLIC_URL}/images/gallery/${webImages.julkiSivu}`, type: preloadjs.Types.IMAGE });
         queue.on('fileload', () => handleLoad());
 

@@ -101,7 +101,7 @@ const GalleryModal = (props: GalleryModalProps) => {
     image.onload = () => {
         currentImageWidth = image.width;
         currentImageHeight = image.height;
-        if (containerRef.current && imageRef.current) {
+        if (imageRef.current) {
             setDimensions();
             imageRef.current.src = src;
             imageRef.current.classList.remove('loading');
@@ -188,6 +188,9 @@ const GalleryModal = (props: GalleryModalProps) => {
         window.addEventListener('resize', setDimensions);
         document.onkeydown = handleKeyDown;
         document.onkeyup = handleKeyUp;
+        if(containerRef.current){
+            containerRef.current.classList.remove('hidden');
+        }
         return () => {
             switching = false;
             window.removeEventListener('resize', setDimensions);
@@ -197,9 +200,9 @@ const GalleryModal = (props: GalleryModalProps) => {
     }, []);
 
     return (
-        <div className="gallery-modal-container">
+        <div ref={containerRef} className="gallery-modal-container hidden">
             <div className="zoomed-image">
-                <div ref={containerRef} className="image-container">
+                <div className="image-container">
                     <img
                         ref={imageRef}
                         src={loadingIcon}
@@ -230,7 +233,9 @@ const Gallery = (props: GalleryProps) => {
     }
 
     const setImageToView = (index: number) => {
-        props.contentDiv.style.zIndex = '5';
+        if(currentImage === null){
+            props.contentDiv.style.zIndex = '5';
+        }
         setCurrentImage(<GalleryModal currentIndex={index} setImageToView={setImageToView} closeGallery={closeGallery} />);
     }
 

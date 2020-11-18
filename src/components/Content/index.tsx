@@ -50,8 +50,11 @@ const Content = (props: ContentProps) => {
     };
 
     const setContent = async(destination: String) => {
-        if(containerRef.current){          
-            containerRef.current.scrollTo({top: 0, behavior: 'smooth'});
+        if(containerRef.current){      
+            try {
+                containerRef.current.scrollTo({top: 0, behavior: 'smooth'});              
+            } catch (error) {              
+            }    
             containerRef.current.className = 'content-container fade';
         }
         await new Promise(res => setTimeout(() => res(),500));
@@ -112,7 +115,6 @@ const Content = (props: ContentProps) => {
             <div ref={containerRef} className="content-container" style={{ paddingBottom: `${props.paddingBottom * 2}px` }}>
                 <div ref={fadeOutRef} className="fade-out"></div>
                 {currentPage}
-                <div className="fade-in"></div>
             </div>
         </div>
     );

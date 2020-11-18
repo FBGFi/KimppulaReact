@@ -37,6 +37,12 @@
         display: flex;
         background-color: rgba(0,0,0,0.8);
         z-index: 2;
+        opacity: 1;
+        transition: opacity 0.25s;
+
+        &.hidden{
+            opacity: 0;
+        }
 
         .zoomed-image{
             margin: auto;
