@@ -13,6 +13,8 @@
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
   pointer-events: none;
+  padding: 0;
+  margin-left: 10px;
   width: 40px;
   height: 40px;
   background: none;
@@ -34,6 +36,7 @@
   color: #FFF;
   background-color: #000;
   border: 0;
+  padding: 0;
   border-radius: 3px;
   font-size: 20px;
   margin-left: auto;

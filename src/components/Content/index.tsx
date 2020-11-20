@@ -22,6 +22,7 @@ let lastScroll = 0;
 const Content = (props: ContentProps) => {
     const [currentPage, setCurrentPage] = useState(<LandingPage webTexts={webTexts} />);
     const [contentMaxed, setContentMaxed] = useState(false);
+
     const contentRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const fadeOutRef = useRef<HTMLDivElement>(null);
@@ -49,18 +50,18 @@ const Content = (props: ContentProps) => {
         }
     };
 
-    const setContent = async(destination: String) => {
-        if(containerRef.current){      
+    const setContent = async (destination: String) => {
+        if (containerRef.current) {
             try {
-                containerRef.current.scrollTo({top: 0, behavior: 'smooth'});              
-            } catch (error) {              
-            }    
+                containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+            }
             containerRef.current.className = 'content-container fade';
         }
-        await new Promise(res => setTimeout(() => res(),500));
+        await new Promise(res => setTimeout(() => res(), 500));
         switch (destination) {
             case 'etusivu':
-                if(contentRef.current){                   
+                if (contentRef.current) {
                     setCurrentPage(<AboutUsPage webTexts={webTexts} contentDiv={contentRef.current} />);
                 }
                 break;
@@ -74,7 +75,7 @@ const Content = (props: ContentProps) => {
                 setCurrentPage(<LandingPage webTexts={webTexts} />);
                 break;
         }
-        if(containerRef.current){          
+        if (containerRef.current) {
             containerRef.current.className = 'content-container';
             lastScroll = 0;
         }
@@ -87,32 +88,47 @@ const Content = (props: ContentProps) => {
     }
 
     const minimizeContent = () => {
-        if(contentRef.current){
-            contentRef.current.className = "Content";  
+        if (contentRef.current) {
+            contentRef.current.className = "Content";
             setContentMaxed(false);
-        } 
+        }
     }
 
-    useEffect(() => {       
+    useEffect(() => {
         document.addEventListener('mouseup', mouseUpHandler);
         document.addEventListener('mousedown', mouseDownHandler);
 
+        // user has the crappiest web browser ever invented (aka safari)
+        if (containerRef.current && containerRef.current.style.paddingLeft != 'clamp(40px, 10%, 60px)') {
+            containerRef.current.style.paddingLeft = '40px';
+            containerRef.current.style.paddingRight = '40px';
+            containerRef.current.style.paddingTop = '40px';
+        }
+
         containerRef.current?.addEventListener('scroll', (e) => {
-            if(!containerRef.current || !contentRef.current) return;
-            
-            if(containerRef.current.scrollTop > lastScroll+5 && window.innerWidth <= 850 && !contentMaxed){
-                contentRef.current.className = "Content align-top";  
+            if (!containerRef.current || !contentRef.current) return;
+
+            if (containerRef.current.scrollTop > lastScroll + 5 && window.innerWidth <= 850 && !contentMaxed) {
+                contentRef.current.className = "Content align-top";
                 setContentMaxed(true);
-            } 
-            lastScroll = containerRef.current.scrollTop;  
+            }
+            lastScroll = containerRef.current.scrollTop;
         });
 
-    }, []);    
+    }, []);
 
     return (
         <div ref={contentRef} className="Content">
             <Header setHeaderHeight={setHeaderHeight} contentMaxed={contentMaxed} minimizeContent={minimizeContent} setPage={setContent} />
-            <div ref={containerRef} className="content-container" style={{ paddingBottom: `${props.paddingBottom * 2}px` }}>
+            <div
+                ref={containerRef}
+                className="content-container"
+                style={{
+                    paddingBottom: `${props.paddingBottom * 2}px`,
+                    paddingTop: 'clamp(40px,10%,60px)',
+                    paddingLeft: 'clamp(40px,10%,60px)',
+                    paddingRight: 'clamp(40px,10%,60px)'
+                }}>
                 <div ref={fadeOutRef} className="fade-out"></div>
                 {currentPage}
             </div>
