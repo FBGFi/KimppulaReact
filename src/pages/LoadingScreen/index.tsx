@@ -40,7 +40,7 @@ const LoadingScreen = (props: LoadingScreenProps) => {
             queue.loadFile({ src: `${process.env.PUBLIC_URL}/images/gallery/${img.file}`, type: preloadjs.Types.IMAGE });
         }
         for (let img of webImages.employees) {
-            queue.loadFile({ src: `${process.env.PUBLIC_URL}/images/employees/${img.file}`, type: preloadjs.Types.IMAGE });
+            queue.loadFile({ src: `${process.env.PUBLIC_URL}/images/employees/${img}`, type: preloadjs.Types.IMAGE });
         }
         queue.loadFile({ src: `${process.env.PUBLIC_URL}/images/gallery/${webImages.julkiSivu}`, type: preloadjs.Types.IMAGE });
         queue.on('fileload', () => handleLoad());
