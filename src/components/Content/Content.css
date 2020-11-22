@@ -17,11 +17,11 @@
 
 .Content .fade-out {
   position: absolute;
-  background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(rgba(255, 255, 255, 0)));
-  background: linear-gradient(#FFF, rgba(255, 255, 255, 0));
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFF), color-stop(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0)));
+  background: linear-gradient(#FFF, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
   width: calc(100% - 4px);
   top: 0;
-  height: 20px;
+  height: 30px;
   right: 4px;
   z-index: 1;
 }
@@ -38,6 +38,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   overflow: auto;
+  scroll-behavior: smooth;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
 }

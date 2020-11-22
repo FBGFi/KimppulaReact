@@ -29,7 +29,7 @@ const Content = (props: ContentProps) => {
 
     const mouseDownHandler = function (e: MouseEvent) {
         if (containerRef.current) {
-            // Change the cursor and prevent user from selecting the text
+            containerRef.current.style.scrollBehavior = 'initial';
             mousePos.top = containerRef.current.scrollTop;
             mousePos.y = e.clientY;
         }
@@ -37,6 +37,9 @@ const Content = (props: ContentProps) => {
     };
 
     const mouseUpHandler = function () {
+        if (containerRef.current) {
+            containerRef.current.style.scrollBehavior = 'smooth';
+        }
         document.removeEventListener('mousemove', mouseMoveHandler);
     };
 
@@ -47,6 +50,17 @@ const Content = (props: ContentProps) => {
         if (containerRef.current) {
             // Scroll the element
             containerRef.current.scrollTop = mousePos.top - dy;
+        }
+    };
+
+    // scroll the container when mouse not on top of the container
+    const mouseScrollHandler = (e: any) => {
+        if (containerRef.current) {
+            if (!e.path.includes(containerRef.current)) {
+                containerRef.current.style.scrollBehavior = 'initial';
+                containerRef.current.scrollTop += e.deltaY / 2;
+                containerRef.current.style.scrollBehavior = 'smooth';
+            }
         }
     };
 
@@ -97,6 +111,7 @@ const Content = (props: ContentProps) => {
     useEffect(() => {
         document.addEventListener('mouseup', mouseUpHandler);
         document.addEventListener('mousedown', mouseDownHandler);
+        document.addEventListener('wheel', mouseScrollHandler);
 
         // user has the crappiest web browser ever invented (aka safari)
         if (containerRef.current && containerRef.current.style.paddingLeft != 'clamp(40px, 10%, 60px)') {

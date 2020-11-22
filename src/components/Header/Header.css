@@ -1,5 +1,5 @@
 .Header {
-  padding: 15px 5px;
+  padding: 20px 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -87,7 +87,7 @@
   background: none;
   border: 0;
   margin: 0 10px;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   -webkit-transition: -webkit-transform 0.3s;
   transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
@@ -154,7 +154,7 @@
     background-color: #FFF;
     -webkit-transition: right 1s;
     transition: right 1s;
-    padding: 5px 12px;
+    padding: 10px 24px;
     border-left: 1px solid #000;
     border-bottom: 1px solid #000;
   }

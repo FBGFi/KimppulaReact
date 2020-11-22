@@ -13,10 +13,10 @@ $contentWidth: clamp(500px, 40%, 800px);
 
     .fade-out{
         position: absolute;
-        background: linear-gradient(#FFF, rgba(255,255,255,0));
+        background: linear-gradient(#FFF, rgba(255,255,255,0),rgba(255,255,255,0),);
         width: calc(100% - 4px);
         top: 0;
-        height: 20px;
+        height: 30px;
         right: 4px;
         z-index: 1;
     }
@@ -26,6 +26,7 @@ $contentWidth: clamp(500px, 40%, 800px);
         display: flex;
         flex-direction: column;
         overflow: auto;
+        scroll-behavior: smooth;
         // padding-top: clamp(40px,10%,60px);
         // padding-left: clamp(40px,10%,60px);
         // padding-right: clamp(40px,10%,60px);
